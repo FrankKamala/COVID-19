@@ -12,7 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.adwera.covid_19.CoronaNewsAdapter.CoronaNewsAdapter;
 import com.adwera.covid_19.R;
 import com.adwera.covid_19.models.news.CoronaNews;
 import com.adwera.covid_19.network.news.NewsApi;
@@ -20,12 +23,17 @@ import com.adwera.covid_19.network.news.NewsClient;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
-
+    @BindView(R.id.newsRecycler)
+    RecyclerView mNewsRecycler;
+    private List<CoronaNews> mNews;
+    private View root;
     private HomeViewModel homeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -40,17 +48,25 @@ public class HomeFragment extends Fragment {
                 textView.setText(s);
             }
         });
+        ButterKnife.bind(this, root);
+        getNewsAll();
         return root;
     }
 
-   public void getnewsAll(){
+   public void getNewsAll(){
 
     NewsApi tangaza = NewsClient.getClient();
-       Call<List<CoronaNews>> countryCall = tangaza.getnewsAll();
-       countryCall.enqueue(new Callback<List<CoronaNews>>() {
+       Call<List<CoronaNews>> news = tangaza.getnewsAll();
+       news.enqueue(new Callback<List<CoronaNews>>() {
            @Override
            public void onResponse(Call<List<CoronaNews>> call, Response<List<CoronaNews>> response) {
-               List<CoronaNews> newsList = response.body();
+               mNews = response.body();
+               CoronaNewsAdapter adapter = new CoronaNewsAdapter(mNews, root.getContext());
+               RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
+               mNewsRecycler.setLayoutManager(layoutManager);
+               mNewsRecycler.setHasFixedSize(true);
+               mNewsRecycler.setAdapter(adapter);
+               adapter.notifyDataSetChanged();
 
 
            }

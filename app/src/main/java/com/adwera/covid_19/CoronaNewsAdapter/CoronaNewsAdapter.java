@@ -33,17 +33,18 @@ public class CoronaNewsAdapter extends RecyclerView.Adapter<CoronaNewsAdapter.My
     @Override
     public CoronaNewsAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_card, parent, false);
+        MyHolder viewHolder = new MyHolder(view);
         return null;
     }
 
     @Override
     public void onBindViewHolder(@NonNull CoronaNewsAdapter.MyHolder holder, int position) {
-
+        holder.bindArticle(articles.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return articles.size();
     }
 
 
@@ -60,6 +61,9 @@ public class CoronaNewsAdapter extends RecyclerView.Adapter<CoronaNewsAdapter.My
             context=itemView.getContext();
         }
         public void bindArticle(CoronaNews article) {
+            mTitle.setText(article.getTitle());
+            mAuthor.setText(article.getTitle());
+            mDescription.setText(article.getTitle());
 
         }
 
