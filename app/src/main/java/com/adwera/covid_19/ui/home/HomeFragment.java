@@ -1,6 +1,7 @@
 package com.adwera.covid_19.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,15 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.adwera.covid_19.R;
+import com.adwera.covid_19.models.news.CoronaNews;
+import com.adwera.covid_19.network.news.NewsApi;
+import com.adwera.covid_19.network.news.NewsClient;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
@@ -32,4 +42,24 @@ public class HomeFragment extends Fragment {
         });
         return root;
     }
+
+   public void getnewsAll(){
+
+    NewsApi tangaza = NewsClient.getClient();
+       Call<List<CoronaNews>> countryCall = tangaza.getnewsAll();
+       countryCall.enqueue(new Callback<List<CoronaNews>>() {
+           @Override
+           public void onResponse(Call<List<CoronaNews>> call, Response<List<CoronaNews>> response) {
+               List<CoronaNews> countryList = response.body();
+
+
+           }
+
+           @Override
+           public void onFailure(Call<List<CoronaNews>> call, Throwable t) {
+
+
+           }
+       });
+   }
 }
