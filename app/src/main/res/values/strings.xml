@@ -4,4 +4,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="news_feeds">News Feeds</string>
+    <string name="countries">Countries</string>
+    <string name="global_cases">Global Cases</string>
 </resources>
