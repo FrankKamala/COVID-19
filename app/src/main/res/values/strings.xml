@@ -6,4 +6,5 @@
     <string name="news_feeds">News Feeds</string>
     <string name="countries">Countries</string>
     <string name="global_cases">Global Cases</string>
+    <string name="country_name">Country Name</string>
 </resources>
