@@ -58,7 +58,12 @@
                 android:text="Content"
                 android:layout_marginStart="8dp"
                 android:layout_below="@id/published_at"/>
-
+            <ImageView
+                android:id="@+id/shadow_bottom"
+                android:src="@drawable/shadow"
+                android:layout_alignBottom="@id/news_detail"
+                android:layout_width="match_parent"
+                android:layout_height="80dp" />
 
         </RelativeLayout>
 
