@@ -62,8 +62,8 @@ public class CoronaNewsAdapter extends RecyclerView.Adapter<CoronaNewsAdapter.My
         }
         public void bindArticle(CoronaNews article) {
             mTitle.setText(article.getTitle());
-            mAuthor.setText(article.getTitle());
-            mDescription.setText(article.getTitle());
+            mAuthor.setText(article.getPrimaryAuthor());
+            mDescription.setText(article.getSnippet());
 
         }
 
