@@ -58,6 +58,7 @@
                 app:cardUseCompatPadding="true"
                 app:cardCornerRadius="10dp"
                 android:clickable="true"
+                android:focusable="true"
                 android:layout_marginTop="220dp"
                 android:layout_weight="1"
                 android:layout_marginStart="12dp"
@@ -152,6 +153,7 @@
                 app:cardUseCompatPadding="true"
                 app:cardCornerRadius="10dp"
                 android:clickable="true"
+                android:focusable="true"
                 android:layout_marginTop="40dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
@@ -212,6 +214,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
                     android:layout_marginStart="150dp"
                     android:layout_marginBottom="8dp"
                     android:text="@string/cases"/>

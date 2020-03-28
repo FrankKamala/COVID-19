@@ -15,6 +15,9 @@ public class Source implements Serializable
     @SerializedName("domain")
     @Expose
     private String domain;
+    @SerializedName("link")
+    @Expose
+    private String link;
     @SerializedName("name")
     @Expose
     private String name;
@@ -27,7 +30,7 @@ public class Source implements Serializable
     @SerializedName("description")
     @Expose
     private String description;
-    private final static long serialVersionUID = -6378386420434322319L;
+    private final static long serialVersionUID = -3566872718063405631L;
 
     /**
      * No args constructor for use in serialization
@@ -40,15 +43,17 @@ public class Source implements Serializable
      * 
      * @param locales
      * @param domain
+     * @param link
      * @param name
      * @param logo
      * @param description
      * @param id
      */
-    public Source(String id, String domain, String name, String logo, List<String> locales, String description) {
+    public Source(String id, String domain, String link, String name, String logo, List<String> locales, String description) {
         super();
         this.id = id;
         this.domain = domain;
+        this.link = link;
         this.name = name;
         this.logo = logo;
         this.locales = locales;
@@ -69,6 +74,14 @@ public class Source implements Serializable
 
     public void setDomain(String domain) {
         this.domain = domain;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public String getName() {
