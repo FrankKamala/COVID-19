@@ -22,6 +22,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     private Country country;
     private Context mContext;
 
+    public static OnSearchClickListener cLickListener;
+
     public SearchAdapter(Country country, Context mContext) {
         this.country = country;
         this.mContext = mContext;
@@ -45,7 +47,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         return 1;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         @BindView(R.id.country_flag)
         ImageView mCountryFlag;
@@ -56,10 +58,25 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             super(itemView);
             mContext = itemView.getContext();
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
         }
         public void BindCountry(Country country){
             Picasso.get().load(country.getCountryInfo().getFlag()).into(mCountryFlag);
             mCountryName.setText(country.getCountry());
         }
+
+        @Override
+        public void onClick(View v) {
+            cLickListener.onClick(v, getAdapterPosition());
+
+        }
+    }
+
+    public void setOnClickListener(OnSearchClickListener cLickListener){
+        SearchAdapter.cLickListener = cLickListener;
+    }
+
+    public interface OnSearchClickListener{
+        void onClick(View view, int position);
     }
 }

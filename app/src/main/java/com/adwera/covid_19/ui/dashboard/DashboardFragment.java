@@ -116,7 +116,12 @@ public class DashboardFragment extends Fragment {
                 GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2);
                 mRecyclerView.setLayoutManager(layoutManager);
 
-
+                adapter.setOnClickListener((View view, int position)->{
+                    TextView countryName = view.findViewById(R.id.country_name);
+                    Intent intent = new Intent(getActivity(), CountryDetails.class);
+                    intent.putExtra("country", countryName.getText().toString().trim());
+                    startActivity(intent);
+                });
             }
 
             @Override

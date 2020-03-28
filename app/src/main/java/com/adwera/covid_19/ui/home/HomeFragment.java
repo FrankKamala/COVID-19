@@ -31,6 +31,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
+
+    private static final String TAG = "HomeFragment";
+
     @BindView(R.id.newsRecycler)
     RecyclerView mNewsRecycler;
     private List<CoronaNews> mNews;
@@ -50,7 +53,7 @@ public class HomeFragment extends Fragment {
             }
         });
         ButterKnife.bind(this, root);
-        getNewsAll();
+        //getNewsAll();
         return root;
     }
 
@@ -70,13 +73,12 @@ public class HomeFragment extends Fragment {
                mNewsRecycler.setAdapter(adapter);
                adapter.notifyDataSetChanged();
 
-
            }
 
            @Override
            public void onFailure(Call<List<CoronaNews>> call, Throwable t) {
 
-
+               Log.d(TAG, "onFailure: " + t.getMessage());
            }
        });
    }
