@@ -24,6 +24,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
 
     List<Country> countries;
     private Context mContext;
+    public static OnCLickListener clickListener;
 
     public CountryAdapter(List<Country> countries, Context mContext) {
         this.countries = countries;
@@ -49,7 +50,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements OnCLickListener{
 
         @BindView(R.id.country_flag)
         ImageView mCountryFlag;
@@ -68,5 +69,18 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
             mCountryName.setText(country.getCountry());
         }
 
+        @Override
+        public void onClick(View view, int position) {
+        clickListener.onClick(view, position);
+        }
+    }
+
+    public void setOnClickListener(OnCLickListener clickListener){
+        CountryAdapter.clickListener = clickListener;
+
+    }
+
+    public interface OnCLickListener{
+        void onClick(View view, int position);
     }
 }
