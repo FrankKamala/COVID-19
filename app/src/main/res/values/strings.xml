@@ -6,4 +6,13 @@
     <string name="news_feeds">News Feeds</string>
     <string name="countries">Countries</string>
     <string name="global_cases">Global Cases</string>
+    <string name="country_name">Country Name</string>
+    <string name="cases_reported">Cases Reported:</string>
+    <string name="today_s_cases">Today\'s Cases:</string>
+    <string name="reported_deaths_today">Reported Deaths Today:</string>
+    <string name="recovered_patients">Recovered Patients:</string>
+    <string name="total_deaths_reported">Total Deaths Reported:</string>
+    <string name="active_patients">Active Patients:</string>
+    <string name="critical_patients">Critical Patients:</string>
+    <string name="cases">........</string>
 </resources>

@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.adwera.covid_19.R;
-import com.adwera.covid_19.models.news.CoronaNews;
+import com.adwera.covid_19.models.news.Article;
 
 import java.util.List;
 
@@ -19,12 +19,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CoronaNewsAdapter extends RecyclerView.Adapter<CoronaNewsAdapter.MyHolder> {
-    private List<CoronaNews> articles;
+    private List<Article> articles;
     private Context context ;
 
-
-
-    public CoronaNewsAdapter(List<CoronaNews> articles, Context context) {
+    public CoronaNewsAdapter(List<Article> articles, Context context) {
         this.articles = articles;
         this.context = context;
     }
@@ -34,7 +32,7 @@ public class CoronaNewsAdapter extends RecyclerView.Adapter<CoronaNewsAdapter.My
     public CoronaNewsAdapter.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_card, parent, false);
         MyHolder viewHolder = new MyHolder(view);
-        return null;
+        return viewHolder;
     }
 
     @Override
@@ -53,14 +51,15 @@ public class CoronaNewsAdapter extends RecyclerView.Adapter<CoronaNewsAdapter.My
         @BindView(R.id.news_title) TextView mTitle;
         @BindView(R.id.news_author) TextView mAuthor;
         @BindView(R.id.news_detail) TextView mDescription;
+        private Context mContext;
 
         public MyHolder(@NonNull View itemView) {
 
             super(itemView);
             ButterKnife.bind(this,itemView);
-            context=itemView.getContext();
+            mContext=itemView.getContext();
         }
-        public void bindArticle(CoronaNews article) {
+        public void bindArticle(Article article) {
             mTitle.setText(article.getTitle());
             mAuthor.setText(article.getPrimaryAuthor());
             mDescription.setText(article.getSnippet());

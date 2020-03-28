@@ -6,7 +6,7 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class CoronaNews implements Serializable
+public class Article implements Serializable
 {
 
     @SerializedName("link")
@@ -36,13 +36,13 @@ public class CoronaNews implements Serializable
     @SerializedName("source")
     @Expose
     private Source source;
-    private final static long serialVersionUID = -469027893816900841L;
+    private final static long serialVersionUID = 7859847385663314212L;
 
     /**
      * No args constructor for use in serialization
      * 
      */
-    public CoronaNews() {
+    public Article() {
     }
 
     /**
@@ -57,7 +57,7 @@ public class CoronaNews implements Serializable
      * @param authors
      * @param primaryImageLink
      */
-    public CoronaNews(String link, String title, String primaryAuthor, List<String> authors, String snippet, String primaryImageLink, List<String> imageLinks, String datePublished, Source source) {
+    public Article(String link, String title, String primaryAuthor, List<String> authors, String snippet, String primaryImageLink, List<String> imageLinks, String datePublished, Source source) {
         super();
         this.link = link;
         this.title = title;
