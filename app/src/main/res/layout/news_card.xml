@@ -63,7 +63,7 @@
                 android:src="@drawable/shadow"
                 android:layout_alignBottom="@id/news_detail"
                 android:layout_width="match_parent"
-                android:layout_height="80dp" />
+                android:layout_height="50dp" />
 
         </RelativeLayout>
 
