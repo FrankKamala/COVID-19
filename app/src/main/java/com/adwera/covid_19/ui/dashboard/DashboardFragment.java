@@ -1,5 +1,6 @@
 package com.adwera.covid_19.ui.dashboard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import com.adwera.covid_19.adapter.SearchAdapter;
 import com.adwera.covid_19.models.Country;
 import com.adwera.covid_19.network.CoronaApi;
 import com.adwera.covid_19.network.CoronaClient;
+import com.adwera.covid_19.ui.CountryDetails;
 
 import java.util.List;
 
@@ -68,6 +70,13 @@ public class DashboardFragment extends Fragment {
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
                 mRecyclerView.setLayoutManager(gridLayoutManager);
                 mRecyclerView.setHasFixedSize(true);
+
+                adapter.setOnClickListener((View view, int position)->{
+                    TextView countryName = view.findViewById(R.id.country_name);
+                    Intent intent = new Intent(getActivity(), CountryDetails.class);
+                    intent.putExtra("country", countryName.getText().toString().trim());
+                    startActivity(intent);
+                });
             }
 
             @Override
@@ -106,6 +115,8 @@ public class DashboardFragment extends Fragment {
                 mRecyclerView.setHasFixedSize(true);
                 GridLayoutManager layoutManager = new GridLayoutManager(getContext(),2);
                 mRecyclerView.setLayoutManager(layoutManager);
+
+
             }
 
             @Override

@@ -50,7 +50,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements OnCLickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         @BindView(R.id.country_flag)
         ImageView mCountryFlag;
@@ -61,7 +61,9 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mContext = itemView.getContext();
+            itemView.setOnClickListener(this);
             ButterKnife.bind(this, itemView);
+
         }
 
         public void bindCountry(Country country){
@@ -70,8 +72,8 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
         }
 
         @Override
-        public void onClick(View view, int position) {
-        clickListener.onClick(view, position);
+        public void onClick(View v) {
+            clickListener.onClick(v, getAdapterPosition());
         }
     }
 
