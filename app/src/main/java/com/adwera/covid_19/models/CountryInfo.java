@@ -13,10 +13,10 @@ public class CountryInfo implements Serializable
     private Integer id;
     @SerializedName("lat")
     @Expose
-    private Integer lat;
+    private Double lat;
     @SerializedName("long")
     @Expose
-    private Integer _long;
+    private Double _long;
     @SerializedName("flag")
     @Expose
     private String flag;
@@ -44,7 +44,7 @@ public class CountryInfo implements Serializable
      * @param lat
      * @param iso3
      */
-    public CountryInfo(Integer id, Integer lat, Integer _long, String flag, String iso3, String iso2) {
+    public CountryInfo(Integer id, Double lat, Double _long, String flag, String iso3, String iso2) {
         super();
         this.id = id;
         this.lat = lat;
@@ -62,19 +62,19 @@ public class CountryInfo implements Serializable
         this.id = id;
     }
 
-    public Integer getLat() {
+    public Double getLat() {
         return lat;
     }
 
-    public void setLat(Integer lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
 
-    public Integer getLong() {
+    public Double getLong() {
         return _long;
     }
 
-    public void setLong(Integer _long) {
+    public void setLong(Double _long) {
         this._long = _long;
     }
 

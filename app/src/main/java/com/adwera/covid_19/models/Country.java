@@ -37,10 +37,10 @@ public class Country implements Serializable
     private Integer critical;
     @SerializedName("casesPerOneMillion")
     @Expose
-    private Integer casesPerOneMillion;
+    private Double casesPerOneMillion;
     @SerializedName("deathsPerOneMillion")
     @Expose
-    private Integer deathsPerOneMillion;
+    private Double deathsPerOneMillion;
     private final static long serialVersionUID = -3520603899172060743L;
 
     /**
@@ -64,7 +64,7 @@ public class Country implements Serializable
      * @param todayCases
      * @param todayDeaths
      */
-    public Country(String country, CountryInfo countryInfo, Integer cases, Integer todayCases, Integer deaths, Integer todayDeaths, Integer recovered, Integer active, Integer critical, Integer casesPerOneMillion, Integer deathsPerOneMillion) {
+    public Country(String country, CountryInfo countryInfo, Integer cases, Integer todayCases, Integer deaths, Integer todayDeaths, Integer recovered, Integer active, Integer critical, Double casesPerOneMillion, Double deathsPerOneMillion) {
         super();
         this.country = country;
         this.countryInfo = countryInfo;
@@ -151,19 +151,19 @@ public class Country implements Serializable
         this.critical = critical;
     }
 
-    public Integer getCasesPerOneMillion() {
+    public Double getCasesPerOneMillion() {
         return casesPerOneMillion;
     }
 
-    public void setCasesPerOneMillion(Integer casesPerOneMillion) {
+    public void setCasesPerOneMillion(Double casesPerOneMillion) {
         this.casesPerOneMillion = casesPerOneMillion;
     }
 
-    public Integer getDeathsPerOneMillion() {
+    public Double getDeathsPerOneMillion() {
         return deathsPerOneMillion;
     }
 
-    public void setDeathsPerOneMillion(Integer deathsPerOneMillion) {
+    public void setDeathsPerOneMillion(Double deathsPerOneMillion) {
         this.deathsPerOneMillion = deathsPerOneMillion;
     }
 

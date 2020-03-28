@@ -1,6 +1,7 @@
 package com.adwera.covid_19.ui.dashboard;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +14,19 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.adwera.covid_19.R;
+import com.adwera.covid_19.models.Country;
+import com.adwera.covid_19.network.CoronaApi;
+import com.adwera.covid_19.network.CoronaClient;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DashboardFragment extends Fragment {
+
+    private static final String TAG = "DashboardFragment";
 
     private DashboardViewModel dashboardViewModel;
 
@@ -30,6 +42,27 @@ public class DashboardFragment extends Fragment {
                 textView.setText(s);
             }
         });
+        getAffectedCountries();
         return root;
     }
+
+    public void getAffectedCountries(){
+        CoronaApi coronaApi = CoronaClient.getClient();
+        Call<List<Country>> countryCall = coronaApi.allCountriesAffected();
+        countryCall.enqueue(new Callback<List<Country>>() {
+            @Override
+            public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
+                List<Country> countryList = response.body();
+                Log.d(TAG, "onResponse: "+ countryList.get(0).getCountry());
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Country>> call, Throwable t) {
+                Log.d(TAG, "onFailure: "+t.getLocalizedMessage());
+
+            }
+        });
+    }
+
 }
