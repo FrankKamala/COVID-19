@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.adwera.covid_19.Constants.Constants;
 import com.adwera.covid_19.CoronaNewsAdapter.CoronaNewsAdapter;
 import com.adwera.covid_19.R;
 import com.adwera.covid_19.models.news.CoronaNews;
@@ -54,9 +55,10 @@ public class HomeFragment extends Fragment {
     }
 
    public void getNewsAll(){
+        ////news?q=corona&type=headlines&locale=en-KE&output=json&page=1&api_key=391591438ADF4258A668756FC309BB54
 
     NewsApi tangaza = NewsClient.getClient();
-       Call<List<CoronaNews>> news = tangaza.getnewsAll();
+       Call<List<CoronaNews>> news = tangaza.getNews("corona","headlines","en-KE","json",1, Constants.API_KEY);
        news.enqueue(new Callback<List<CoronaNews>>() {
            @Override
            public void onResponse(Call<List<CoronaNews>> call, Response<List<CoronaNews>> response) {
