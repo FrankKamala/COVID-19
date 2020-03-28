@@ -51,6 +51,7 @@ public class CoronaNewsAdapter extends RecyclerView.Adapter<CoronaNewsAdapter.My
         @BindView(R.id.news_title) TextView mTitle;
         @BindView(R.id.news_author) TextView mAuthor;
         @BindView(R.id.news_detail) TextView mDescription;
+        @BindView(R.id.published_at) TextView mPublished;
         private Context mContext;
 
         public MyHolder(@NonNull View itemView) {
@@ -59,9 +60,10 @@ public class CoronaNewsAdapter extends RecyclerView.Adapter<CoronaNewsAdapter.My
             ButterKnife.bind(this,itemView);
             mContext=itemView.getContext();
         }
-        public void bindArticle(Article article) {
+        public void bindArticle(Article article) {// Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
             mTitle.setText(article.getTitle());
             mAuthor.setText(article.getPrimaryAuthor());
+            mPublished.setText(article.getDatePublished());
             mDescription.setText(article.getSnippet());
 
         }
