@@ -16,6 +16,7 @@ import com.adwera.covid_19.models.news.CoronaNews;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class CoronaNewsAdapter extends RecyclerView.Adapter<CoronaNewsAdapter.MyHolder> {
     private List<CoronaNews> articles;
@@ -48,13 +49,19 @@ public class CoronaNewsAdapter extends RecyclerView.Adapter<CoronaNewsAdapter.My
 
     //class MyHolder
     public class MyHolder extends RecyclerView.ViewHolder{
-        @BindView(R.id.news_title)
-        TextView mTitle;
+        @BindView(R.id.news_title) TextView mTitle;
         @BindView(R.id.news_author) TextView mAuthor;
         @BindView(R.id.news_detail) TextView mDescription;
 
         public MyHolder(@NonNull View itemView) {
+
             super(itemView);
+            ButterKnife.bind(this,itemView);
+            context=itemView.getContext();
         }
+        public void bindArticle(CoronaNews article) {
+
+        }
+
     }
 }
