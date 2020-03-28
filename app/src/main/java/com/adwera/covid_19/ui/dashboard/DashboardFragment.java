@@ -12,8 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.adwera.covid_19.R;
+import com.adwera.covid_19.adapter.CountryAdapter;
 import com.adwera.covid_19.models.Country;
 import com.adwera.covid_19.network.CoronaApi;
 import com.adwera.covid_19.network.CoronaClient;
@@ -29,19 +32,20 @@ public class DashboardFragment extends Fragment {
     private static final String TAG = "DashboardFragment";
 
     private DashboardViewModel dashboardViewModel;
+    RecyclerView mRecyclerView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel =
                 ViewModelProviders.of(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
         dashboardViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+
             }
         });
+        mRecyclerView = root.findViewById(R.id.countries_recycler_view);
         getAffectedCountries();
         return root;
     }
@@ -54,7 +58,11 @@ public class DashboardFragment extends Fragment {
             public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
                 List<Country> countryList = response.body();
                 Log.d(TAG, "onResponse: "+ countryList.get(0).getCountry());
-
+                CountryAdapter adapter = new CountryAdapter(response.body(), getContext());
+                mRecyclerView.setAdapter(adapter);
+                GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+                mRecyclerView.setLayoutManager(gridLayoutManager);
+                mRecyclerView.setHasFixedSize(true);
             }
 
             @Override
