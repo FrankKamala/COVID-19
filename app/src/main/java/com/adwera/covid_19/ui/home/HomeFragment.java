@@ -50,7 +50,7 @@ public class HomeFragment extends Fragment {
        countryCall.enqueue(new Callback<List<CoronaNews>>() {
            @Override
            public void onResponse(Call<List<CoronaNews>> call, Response<List<CoronaNews>> response) {
-               List<CoronaNews> countryList = response.body();
+               List<CoronaNews> newsList = response.body();
 
 
            }
